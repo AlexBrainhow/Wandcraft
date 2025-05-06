@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "wandcraft:aspects/_unknown"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "aspect_id": 1
+      },
+      "model": "wandcraft:item/aspects/aer"
+    }
+  ]
+}
