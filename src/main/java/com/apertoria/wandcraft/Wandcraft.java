@@ -1,14 +1,21 @@
 package com.apertoria.wandcraft;
 
 
+import com.apertoria.wandcraft.api.aspects.Aspect;
+import com.apertoria.wandcraft.api.aspects.AspectList;
+import com.apertoria.wandcraft.api.aspects.direct.AspectDictionary;
 import com.apertoria.wandcraft.common.AspectRegistry;
+import com.apertoria.wandcraft.common.ConfigAspects;
 import com.apertoria.wandcraft.common.CreativeTabRegistry;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -41,6 +48,8 @@ public class Wandcraft {
         //Регистрация вкладки в творческом режиме
         CreativeTabRegistry.register(modEventBus);
 
+
+
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -61,6 +70,8 @@ public class Wandcraft {
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+
+        ConfigAspects.init(event);
     }
 
     // Add the example block item to the building blocks tab
@@ -78,6 +89,8 @@ public class Wandcraft {
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+
+
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {

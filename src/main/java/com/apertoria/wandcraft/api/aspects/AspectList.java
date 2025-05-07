@@ -17,6 +17,7 @@ import java.util.*;
  * @version 1.0
  */
 public class AspectList implements Serializable {
+    public static final AspectList EMPTY = new AspectList();
     /** Поле карты ключ значение с аспектами и их кол-вом */
     private final LinkedHashMap<Aspect, Integer> aspectIntegerMap = new LinkedHashMap<>();
     /** Поле с регистром зарегистрированных аспектов */
